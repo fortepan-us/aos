@@ -11,7 +11,7 @@
 import getOffset from "./../libs/offset"
 import getInlineOption from "./getInlineOption"
 
-export const getPositionIn = (el, defaultOffset, defaultAnchorPlacement) => {
+export const getPositionIn = (el, defaultOffset, defaultAnchorPlacement, options) => {
     const windowHeight = window.innerHeight
     const anchor = getInlineOption(el, "anchor")
     const inlineAnchorPlacement = getInlineOption(el, "anchor-placement")
@@ -21,8 +21,8 @@ export const getPositionIn = (el, defaultOffset, defaultAnchorPlacement) => {
     const anchorPlacement = inlineAnchorPlacement || defaultAnchorPlacement
     let finalEl = el
 
-    if (anchor && document.querySelectorAll(anchor)) {
-        finalEl = document.querySelectorAll(anchor)[0]
+    if (anchor && options.rootNode.querySelectorAll(anchor)) {
+        finalEl = options.rootNode.querySelectorAll(anchor)[0]
     }
 
     let triggerPoint = getOffset(finalEl).top - windowHeight
@@ -60,14 +60,14 @@ export const getPositionIn = (el, defaultOffset, defaultAnchorPlacement) => {
     return triggerPoint + additionalOffset
 }
 
-export const getPositionOut = (el, defaultOffset) => {
+export const getPositionOut = (el, defaultOffset, options) => {
     const windowHeight = window.innerHeight
     const anchor = getInlineOption(el, "anchor")
     const additionalOffset = getInlineOption(el, "offset", defaultOffset)
     let finalEl = el
 
-    if (anchor && document.querySelectorAll(anchor)) {
-        finalEl = document.querySelectorAll(anchor)[0]
+    if (anchor && options.rootNode.querySelectorAll(anchor)) {
+        finalEl = options.rootNode.querySelectorAll(anchor)[0]
     }
 
     const elementOffsetTop = getOffset(finalEl).top

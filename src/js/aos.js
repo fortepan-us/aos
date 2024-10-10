@@ -42,6 +42,8 @@ let options = {
     disableMutationObserver: false,
     throttleDelay: 99,
     debounceDelay: 50,
+    rootNode: document,
+    rootSelector: "body",
 }
 
 // Detect not supported browsers (<=IE9)
@@ -137,7 +139,7 @@ const init = function init(settings) {
     options = Object.assign(options, settings)
 
     // Create initial array with elements -> to be fullfilled later with prepare()
-    $aosElements = elements()
+    $aosElements = elements(options.rootNode)
 
     /**
      * Disable mutation observing if not supported
@@ -172,11 +174,9 @@ const init = function init(settings) {
      * Set global settings on body, based on options
      * so CSS can use it
      */
-    document.querySelector("body").setAttribute("data-aos-easing", options.easing)
-
-    document.querySelector("body").setAttribute("data-aos-duration", options.duration)
-
-    document.querySelector("body").setAttribute("data-aos-delay", options.delay)
+    options.rootNode.querySelector(options.rootSelector).setAttribute("data-aos-easing", options.easing)
+    options.rootNode.querySelector(options.rootSelector).setAttribute("data-aos-duration", options.duration)
+    options.rootNode.querySelector(options.rootSelector).setAttribute("data-aos-delay", options.delay)
 
     /**
      * Handle initializing
