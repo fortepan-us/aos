@@ -3,7 +3,7 @@
  * This array will be extended later with elements attributes values
  * like 'position'
  */
-export default () => {
-  const elements = document.querySelectorAll('[data-aos]');
-  return Array.prototype.map.call(elements, node => ({ node }));
-};
+export default (rootNode) => {
+    const elements = rootNode.querySelectorAll("[data-aos]")
+    return Array.prototype.map.call(elements, (node) => ({node}))
+}
