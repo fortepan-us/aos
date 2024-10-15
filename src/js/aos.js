@@ -44,6 +44,7 @@ let options = {
     debounceDelay: 50,
     rootNode: document,
     rootSelector: "body",
+    scrollEventOptions: undefined,
 }
 
 // Detect not supported browsers (<=IE9)
@@ -64,6 +65,7 @@ const initializeScroll = function initializeScroll() {
         throttle(() => {
             handleScroll($aosElements, options.once)
         }, options.throttleDelay),
+        options.scrollEventOptions,
     )
 
     return $aosElements
