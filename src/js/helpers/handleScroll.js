@@ -80,7 +80,11 @@ const applyClasses = (el, top) => {
  * @param  {array} $elements         array of elements nodes
  * @return {void}
  */
-const handleScroll = ($elements) =>
+const handleScroll = ($elements) => {
+    if (window.pageYOffset === 0) {
+        console.warn('exhibit scrolling may be broken by layout. consider adding exhibit-mode="light" to <fortepan-viewer> tag attributes if this message keeps appearing on scroll.')
+    }
     $elements.forEach((el, i) => applyClasses(el, window.pageYOffset))
+}
 
 export default handleScroll
