@@ -85,7 +85,7 @@ const refresh = function refresh(initialize = false) {
  * create array with new elements and trigger refresh
  */
 const refreshHard = function refreshHard() {
-    $aosElements = elements()
+    $aosElements = elements(options.rootNode)
 
     if (isDisabled(options.disable) || isBrowserNotSupported()) {
         return disable()
